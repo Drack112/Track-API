@@ -1,0 +1,37 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage adapter, specifically when used with LiteIDE
+*.out
+coverage.html
+report.json
+junit-report.xml
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# env file
+.env.dev
+.env.prod
+
+# IDE files
+.idea
+.qodo
+
+.venv-docs/
+site/
+/infrastructure/docker/environments/dev/.env
+
+# Personal, local-only docs (private workspace for notes/ideas)
+docs/personal/

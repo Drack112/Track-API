@@ -1,0 +1,22 @@
+site_name: TrackAPI
+site_description: Backend Go - Hexagonal, REST/GRAPHQL, Telemetry
+repo_name: Drack112/Track-API
+repo_url: https://github.com/Drack112/Track-API
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.instant
+    - content.code.copy
+    - content.tabs.link
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - Getting Started: getting-started.md
+plugins:
+  - search
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables

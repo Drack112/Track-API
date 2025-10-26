@@ -1,0 +1,32 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+      grpc:
+
+processors:
+  filter/health:
+    spans:
+      exclude:
+        match_type: regexp
+        span_names:
+          - "^/track/health$"
+  batch:
+
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:9888"
+  otlp:
+    endpoint: jaeger:4317
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: ["filter/health", batch]
+      exporters: [otlp]
+    metrics:
+      receivers: [otlp]
+      exporters: [prometheus]
