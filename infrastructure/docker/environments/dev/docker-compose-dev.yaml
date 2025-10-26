@@ -86,6 +86,34 @@ services:
       - local_network
 
 
+  track-api:
+    image: track-api:dev
+    build: 
+      context: ../../../..
+      dockerfile: infrastructure/docker/Dockerfile
+    container_name: track-api-dev
+    env_file:
+      - .env.dev
+    ports:
+      - "5001:5001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      otel-collector:
+        condition: service_started
+    networks:
+      - local_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- \"http://localhost:$$HTTP_PORT$$HTTP_CONTEXT$$HTTP_API_ROOT$$HTTP_HEALTH_ROUTE\" >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 5
+
+
 
 networks:
   local_network:
